@@ -28,7 +28,8 @@ if (arg === "my-tweets") {
     }
   });
 } else if (arg === "spotify-this-song") {
-  spotify.search({ type: "track", query: process.argv[3] }, function(
+  
+  spotify.search({ type: "track", query: (process.argv[3] || 'The Sign Ace of Base' ) }, function(
     err,
     data
   ) {
