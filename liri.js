@@ -1,3 +1,4 @@
+const request = require('request');
 require("dotenv").config();
 const keys = require("./keys");
 
@@ -40,6 +41,12 @@ if (arg === "my-tweets") {
     console.log(JSON.stringify(songs.map(x => `${x.name} by ${x.artists[0].name}, preview here ${x.preview_url} on ${x.album.name}`), null, 2));
   });
 } else if (arg === "movie-this") {
+  const movie = process.argv[3] || 'Mr. Nobody';
+  const url = `http://www.omdbapi.com/?apikey=trilogy&t=${movie}`;
+  request(url, (error, response, body) => {
+    var result = JSON.parse(body);
+    console.log(`${result.Title} release on ${result.Released} with a rating of ${result.imdbRating} and RottenTomatoes rating of ${result.Metascore} produced in ${result.Country} in ${result.Language} language(s). ${result.Plot}`);
+  })
 } else if (arg === "do-what-it-says") {
 }
 
