@@ -41,8 +41,8 @@ async function doProcess(arg, arg3) {
         }
         let songs = data.tracks.items;
         let toAppend = JSON.stringify(songs.map(x => `${x.name} by ${x.artists[0].name}, preview here ${x.preview_url} on ${x.album.name}`), null, 2);
-      });
         appendToFile(toAppend);
+      });
     } else if (arg === "movie-this") {
       const movie = arg3 || 'Mr. Nobody';
       const url = `http://www.omdbapi.com/?apikey=trilogy&t=${movie}`;
@@ -60,6 +60,8 @@ async function doProcess(arg, arg3) {
           command = command.split(',');
           doProcess(command[0], command[1])
       })
+    } else {
+      console.log('please provide an argument')
     }
 }
 
